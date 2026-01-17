@@ -1,12 +1,12 @@
 const library = [];
 
 class Book {
-    constructor(title, author, pages) {
+    constructor(title, author, pages, isRead) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.isRead = false;
+        this.isRead = isRead;
     }
 }
 
@@ -43,8 +43,31 @@ function displayBooks() {
     });
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295);
-addBookToLibrary("1984", "George Orwell", 328);
-addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180);
+const dialogModal = document.getElementById("book-dialog__modal");
+const addNewBookBtn = document.getElementById("new-book-btn");
+const closeBookModal = document.getElementById("close-button");
+const bookForm = document.getElementById("book-form");
 
-displayBooks();
+addNewBookBtn.addEventListener('click', () => {
+    dialogModal.showModal();
+});
+
+closeBookModal.addEventListener('click', () => {
+    dialogModal.close();
+})
+
+bookForm.addEventListener('submit', (event) => {
+    // Stop page from refreshing
+    event.preventDefault();
+
+    const formTitle = document.getElementById("title").value;
+    const formAuthor = document.getElementById("author").value;
+    const formPages = document.getElementById("pages").value;
+    const isRead = document.getElementById("isRead").checked;
+
+    addBookToLibrary(formTitle, formAuthor, formPages, isRead)
+
+    displayBooks();
+    bookForm.reset();
+    dialogModal.close();
+});

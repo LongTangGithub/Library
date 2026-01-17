@@ -1,14 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/book.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/book.css" />
     <script src="src/main.js" defer></script>
     <title>Library</title>
-</head>
-<body>
-    <section id="library-container"></section>
-</body>
+  </head>
+  <body>
+    <section id="library-container">
+        <button class="add-book__btn" id="new-book-btn">Add New Book</button>
+
+    </section>
+
+    <dialog id="book-dialog__modal" class="book-modal">
+      <form id="book-form">
+        <h2>Book Details</h2>
+
+        <div>
+          <label for="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            require
+            placeholder="e.g. The Hobbit"
+          />
+        </div>
+        <div>
+          <label for="author">Author:</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            required
+            placeholder="e.g. J.R.R. Tolkien"
+          />
+        </div>
+
+        <div>
+          <label for="pages">Number of Pages:</label>
+          <input type="number" id="pages" name="pages" required min="1" />
+        </div>
+
+        <div>
+          <label for="isRead">Have you read it?</label>
+          <input type="checkbox" id="isRead" name="isRead" />
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit">Confirm</button>
+            <button type="button" id="close-button">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
 </html>
