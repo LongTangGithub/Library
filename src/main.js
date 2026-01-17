@@ -1,3 +1,5 @@
+import { Library } from "./library";
+
 const library = [];
 
 class Book {
