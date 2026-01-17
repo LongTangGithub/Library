@@ -8,10 +8,15 @@ class Book {
         this.pages = pages;
         this.isRead = isRead;
     }
+
+    // Flip the status: if true, becomes false. If false, becomes true.
+    toggleReadStatus() {
+        this.isRead = !this.isRead;
+    }
 }
 
-function addBookToLibrary(title, author, pages) {
-    const newBook = new Book(title, author, pages);
+function addBookToLibrary(title, author, pages, isRead) {
+    const newBook = new Book(title, author, pages, isRead);
     library.push(newBook);
 }
 
@@ -38,6 +43,26 @@ function displayBooks() {
             <button class="remove-btn">Remove</button>
             <button class="toggle-btn">Change Status</button>
         `;
+
+        const removeBookBtn = bookCard.querySelector(".remove-btn")
+        const toggleStatusBtn = bookCard.querySelector(".toggle-btn");
+
+        removeBookBtn.addEventListener("click", () => {
+            // Finding the index of the book in 'library' array
+            const bookIndex = library.findIndex(item => item.id === book.id);
+            library.splice(bookIndex, 1); // Removing the 1 item from the array
+
+            // Rerender to show the book that it's gone
+            displayBooks();
+        });
+
+        toggleStatusBtn.addEventListener("click", () => {
+            // Tell the specific book object to flip its status
+            book.toggleReadStatus();
+            
+            // Refresh the UI to show the new "Read" or "Not Read" text
+            displayBooks();
+        })
 
         libraryContainer.appendChild(bookCard);
     });
