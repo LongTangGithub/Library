@@ -6,6 +6,8 @@ export function createBookCard(book) {
     const bookCard = document.createElement("div");
     bookCard.className = "book-card";
 
+    bookCard.dataset.bookId = book.id;
+
     bookCard.innerHTML = `
         <h3>${book.title}</h3>
         <p>By: ${book.author}</p>
