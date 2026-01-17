@@ -1,4 +1,4 @@
-import { Library } from "./modules/library";
+import { Library } from "./modules/Library";
 
 const library = [];
 
